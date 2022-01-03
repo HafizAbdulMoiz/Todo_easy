@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+
+{% block title %} HOME {% endblock title %}
+
+{% block body %}
+    <div class="container mt-4">
+        <div class="row">
+            <div class="col">
+                <h2 class="bg-success text-center text-dark mb-4">ADD ITEMS</h2>
+                <form action="" method="post">
+                    {% csrf_token %}
+                    <input type="text" class="form-inline" name="title"  placeholder="Type here.....">
+                    <button class="btn btn-primary " type="submit">ADD ITEM</button>
+                </form>
+            </div>
+        </div>
+
+        <div class="row mt-4">
+            <div class="col">
+                <ul class="list-group">
+                    {% for todo in todos reversed %}
+                        <li class="list-group-item">{{todo.title | title}}
+                            <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                                <a class="btn btn-danger" href="delete/{{todo.id}}">Delete</a>
+                            </div>
+                        </li>
+                    {% endfor %}
+                  </ul>
+            </div>
+        </div>
+    </div>
+{% endblock body %}
